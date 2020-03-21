@@ -128,5 +128,28 @@ h3{
 
 .igPost:hover h3{
   opacity: 1;
+}
+
+@media only screen and (max-width: 768px){
+  .igPost{
+    width:71vw;
+    height:71vw;
+  }
+
+  h1{
+    font-size: 2.5rem;
+  }
+
+  h2{
+    font-size: 1.5rem;
+  }
+
+  h3{
+    font-size: 4vw;
+  }
+
+  #hpNavText{
+    font-size: 1rem;
+  }
 
 }
