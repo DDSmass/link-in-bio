@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>@DDSmass | HTML Generator</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <div id="header"></div>
+    <div id="homepageNav">
+      <span id="hpNavText"><a href="index.html">Go to the Link in Bio page <span id="greenArrow">></span></a></span>
+    </div>
+    <div id="body">
+      <h1>New Post HTML generator</h1>
+      <h2>Use this tool to generate the HTML that is added in the index when new linked content is posted</h2>
+      <div id="greenBar"></div>
+
+      <p>This tool is designed to streamline the process of adding a new post to the DDS Link in Bio page. Fill out the fields below and copy the resulting text. Paste it under the "PASTE BELOW HERE" line in index.html</p>
+
+      <label for="url"><b>Target page URL</b> <br class=mobile>Please <i>DO NOT</i> include "https://" or "www."</label><br>
+      <input type="text" name="url" id="urlField" placeholder="ex: mass.gov/dds"><br>
+      <label for="filename"><b>Photo Filename</b> <br class=mobile>Exactly as it appears in the photos folder. Please include the file ending (ex. .jpg, .png. etc.)</label><br>
+      <input type="text" name="filename" id="filenameField" placeholder="ex: shriver.jpg"><br>
+      <label for="altText"><b>Alt Text</b> <br class=mobile>This description will be used if the user is using a screen reader or if the photo can't load</label><br>
+      <textarea name="altText" id="altTextField" rows="5" cols="49"></textarea><br>
+      <button type="button" id="submitButton" onclick="generate()">Generate</button>
+      <div id="generatedContainer">
+        <div class="divider"></div>
+        <h2>Generated HTML</h2>
+        <div id="generatedTextBox">
+          <h3 id="fillFields" class="reminder">Please fill out all fields</h3>
+          <div id="generatedText">
+            <p>&lt;div class="igPost"&gt;&lt;a href="https://<span id="link1">LINKGOESHERE.com</span>"&gt;<br>
+            &nbsp;&nbsp;&lt;img src="photos/<span id="filename">PHOTO-FILE-NAME.jpg</span>" alt="<span id="altText">BRIEF DESCRIPTION OF POST IMAGE</span>"&gt;<br>
+            &nbsp;&nbsp;&lt;h3><span id="link2">LINKGOESHERE.com</span>&lt;/h3&gt;&lt;/a&gt;<br>
+            &lt;/div&gt;</p>
+          </div>
+        </div>
+        <p><i><b>Is your photo uploaded?</b></i> <br class=mobile>Make sure you're logged into the DDS GitHub account, then add a photo of your post to the <a href="https://github.com/DDSmass/link-in-bio/tree/master/photos" target="_blank">photo folder</a>.
+        <p><i><b>Ready to add your post to the page?</b></i> <br class=mobile>Copy the above text and paste it below the &lt;!-- PASTE BELOW HERE--&gt; line in the <a href="https://github.com/DDSmass/link-in-bio/edit/master/index.html" target="_blank">index html file</a>.</br>
+        Scroll to the bottom of the page and select "Commit Changes" to add the new post.</p>
+        <p><i><b>Can't make changes to the html file in GitHub?</b></i> <br class=mobile>Make sure you're logged in and you're in editing mode (look for the little pencil at the top right of the box with the file text in it).</p>
+        <p class="centerAlign"><i><b>Please make sure all information is correct.</i></b></p>
+      </div>
+    </div>
+
+    <div id="footer">
+      <a href="https://www.mass.gov/orgs/department-of-developmental-services" class="footerText"><span>DDS Homepage</span></a>
+      <a href="https://www.mass.gov/" class="footerText"><span>Mass.gov</span></a>
+      <a href="index.html" class="footerText"><span>Link in Bio page</span></a>
+    </div>
+
+    <script>
+
+      var url;
+      var filename;
+      var altText;
+
+      function generate(){
+        url=document.getElementById('urlField').value;
+        filename=document.getElementById('filenameField').value;
+        altText=document.getElementById('altTextField').value;
+
+        if (url == "" || filename == "" || altText == "") {
+          document.getElementById('fillFields').style.display = "block";
+          document.getElementById('generatedText').style.display = "none";
+          document.getElementById('fillFields').classList.add("active");
+        } else {
+          document.getElementById('fillFields').style.display = "none";
+          document.getElementById('generatedText').style.display = "block";
+          document.getElementById('fillFields').classList.remove("active");
+          document.getElementById('link1').innerHTML = url;
+          document.getElementById('filename').innerHTML = filename;
+          document.getElementById('link2').innerHTML = url;
+          document.getElementById('altText').innerHTML = altText;}
+      }
+
+    </script>
+  </body>
+</html>
